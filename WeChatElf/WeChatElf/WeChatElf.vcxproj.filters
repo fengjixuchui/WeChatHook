@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Class">
+      <UniqueIdentifier>{a4a67206-1c89-4188-ae35-08f813ad5d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Class\V2.6.8.52">
+      <UniqueIdentifier>{af9a496b-5b7c-4956-a404-859a05440430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Class\Base">
+      <UniqueIdentifier>{babd256e-be3e-49be-b39d-0f1594c074a7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="WXEFriendOperateBase.h">
+      <Filter>Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="WXEFriendOperateV2_6_8_52.h">
+      <Filter>Class\V2.6.8.52</Filter>
+    </ClInclude>
+    <ClInclude Include="WXESubject.h">
+      <Filter>Class</Filter>
+    </ClInclude>
+    <ClInclude Include="WXESubjectImpl.h">
+      <Filter>Class</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="WXEFriendOperateBase.cpp">
+      <Filter>Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="WXEFriendOperateV2_6_8_52.cpp">
+      <Filter>Class\V2.6.8.52</Filter>
+    </ClCompile>
+    <ClCompile Include="WXESubject.cpp">
+      <Filter>Class</Filter>
+    </ClCompile>
+    <ClCompile Include="WXESubjectImpl.cpp">
+      <Filter>Class</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
