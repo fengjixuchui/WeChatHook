@@ -36,23 +36,21 @@ using WXEMessage = WXEGeneralTextStruct;
 using WXEOPString = WXEGeneralTextStruct;
 
 template<typename T>
-struct _WXEGeneralStructArray {
+struct WXEStructArray {
 	DWORD start;
 	DWORD end;
 	DWORD endEx;
-	_WXEGeneralStructArray(DWORD header) {
+	WXEStructArray(DWORD header) {
 		start = header;
 		end = header + sizeof(T);
 		endEx = end;
 	}
 };
-template<typename T>
-using WXEStructArray = _WXEGeneralStructArray<T>;
 
 typedef struct _WXEGeneralDataStruct {
-	DWORD bytes;
+	CHAR *bytes;
 	DWORD size;
-	_WXEGeneralDataStruct(DWORD header, DWORD length) {
+	_WXEGeneralDataStruct(CHAR *header, DWORD length) {
 		bytes = header;
 		size = length;
 	}

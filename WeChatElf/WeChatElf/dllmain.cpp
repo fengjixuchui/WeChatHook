@@ -33,9 +33,9 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	if (uMsg == WM_COMMAND) {
 		if (wParam == IDOK) {
-			if (!gHKOperator->isOpenGetQRCode()) {
+			//if (!gHKOperator->isOpenGetQRCode()) {
 				gHKOperator->hookGetQRCode(true);
-			}
+		//	}
 		} else if (wParam == IDCANCEL) {
 			if (gHKOperator->isOpenGetQRCode()) {
 				gHKOperator->hookGetQRCode(false);

@@ -1,2 +1,5 @@
-﻿  WXEHookOperateV2_6_8_51.cpp
+﻿  dllmain.cpp
+  WXEHookOperateBase.cpp
+  WXEHookOperateV2_6_8_51.cpp
+  正在生成代码...
   WeChatElf.vcxproj -> C:\Users\YH\Desktop\微信demo\WeChatHook\WeChatElf\Debug\WeChatElf.dll

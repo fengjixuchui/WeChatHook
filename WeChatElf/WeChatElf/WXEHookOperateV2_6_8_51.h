@@ -8,7 +8,6 @@ public:
 	WXEHookOperateV2_6_8_51(DWORD address);
 	virtual ~WXEHookOperateV2_6_8_51();
 
-	//void sendQRCodePNG(DWORD *pngHeaderPtr) const;
 	/*
 	void hookReceiveTransferResult() const;
 	void hookReceiveMessage() const;
@@ -20,11 +19,8 @@ public:
 	bool isOpenGetUserInfoFromNetwork() const;
 	*/
 
-protected:
+private:
 	void initHookOffset() override;
 
-private:
-	void hookGetQRCode(bool open);
-	void getQRCodeCallback();
 };
 

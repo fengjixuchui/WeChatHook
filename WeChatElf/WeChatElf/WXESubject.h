@@ -2,15 +2,10 @@
 
 #include "WXESubjectImpl.h"
 
-class WXESubject;
-
-using WXEUserSubjectMap = std::map<DWORD, WXESubject>;
-
 class WXESubject {
 public:
-	WXESubject(const WXESubject& val);
+	WXESubject(DWORD address);
 	~WXESubject();
-	static WXESubject& createSubject(DWORD address);
 
 public:
 	/*
@@ -97,9 +92,6 @@ public:
 	void query() const;
 
 private:
-	WXESubject(DWORD address);
-
-private:
 	/*
 	*  微信模块基址
 	*/
@@ -110,13 +102,5 @@ private:
 	*  类的真正实现对象
 	*/
 	std::unique_ptr<WXESubjectImpl> implementation;
-
-private:
-	/*
-	* 用户与Subject的对应关系，通过User（DWORD）查找到对应的微信进程
-	*/
-	static DWORD userNumber;
-	static WXEUserSubjectMap userMap;
-	static std::mutex mutexLock;
 };
 

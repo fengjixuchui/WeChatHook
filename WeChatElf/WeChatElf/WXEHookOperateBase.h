@@ -27,6 +27,7 @@ public:
 /*
  *	Common Implementation
  */
+
 template<size_t T>
 struct WXEHookItems {
 	DWORD hookAddress;
@@ -40,21 +41,24 @@ struct WXEHookItems {
 };
 
 class WXEHookOperateSimple : public WXEHookOperateBase {
-public:
-	bool isOpenGetQRCode() const;
-
 protected:
 	WXEHookOperateSimple(DWORD address);
-	virtual void initHookOffset() = 0;
+	virtual void initHookOffset() = 0; //this function must be implemented in a derived class
 
 private:
-	void sendQRCodePNG(DWORD *pngHeaderPtr) const;
+	bool isOpenGetQRCode() const;
+
+	void hookGetQRCode(bool open);
+	void getQRCodeCallback();
+	void sendQRCodePNG(const DWORD& pngHeaderPtr) const;
 
 protected:
 	DWORD winBaseAddress;
 
-protected:
-	static std::mutex hookGetQRCodeLock;
+	WXEHookItems<5> hookGetQRCodeItems;
+	WXEHookItems<5> hookTransferResultItems;
+	WXEHookItems<5> hookReceiveMessageItems;
+	WXEHookItems<5> hookGetUserInfoFromNetworkItems;
 
 protected:
 	std::array<BYTE, 5> backupGetQRCode;
@@ -64,8 +68,6 @@ protected:
 	bool openReceiveMessage;
 	bool openGetUserInfoFromNetwork;
 };
-
-
 
 template<size_t T>
 class WXEHookOperator {
