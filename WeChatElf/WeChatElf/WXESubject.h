@@ -6,11 +6,6 @@ class WXESubject;
 
 using WXEUserSubjectMap = std::map<DWORD, WXESubject>;
 
-enum WXEError
-{
-
-};
-
 class WXESubject {
 public:
 	WXESubject(const WXESubject& val);

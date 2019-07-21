@@ -1,9 +1,6 @@
 #pragma once
 
-#include <memory>
-#include <mutex>
-#include <map>
-#include <vector>
+#include "WXECommon.h"
 
 class WXESubjectImpl {
 
