@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "resource.h"
 
-#include "WXEHookOperateV2_6_8_51.h"
 
 DWORD& WXEBaseAddress() {
 	static DWORD base = 0;
@@ -10,7 +9,6 @@ DWORD& WXEBaseAddress() {
 		base = (DWORD)LoadLibrary(L"WeChatWin.dll"); //单线程测试
 	return base;
 }
-WXEHookOperateBase *gHKOperator = new WXEHookOperateV2_6_8_51(WXEBaseAddress());
 
 
 INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -33,13 +31,9 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	if (uMsg == WM_COMMAND) {
 		if (wParam == IDOK) {
-			//if (!gHKOperator->isOpenGetQRCode()) {
-				gHKOperator->hookGetQRCode(true);
-		//	}
+
 		} else if (wParam == IDCANCEL) {
-			if (gHKOperator->isOpenGetQRCode()) {
-				gHKOperator->hookGetQRCode(false);
-			}
+
 		}
 		return 0;
 	}

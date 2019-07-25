@@ -34,22 +34,19 @@
     <ClInclude Include="WXELoginOperateBase.h">
       <Filter>Class\Base</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="WXELoginOperateImpl.h">
+      <Filter>Class\V2.6.8.51</Filter>
+    </ClInclude>
+    <ClInclude Include="WXEFriendOperateImpl.h">
+      <Filter>Class\V2.6.8.51</Filter>
+    </ClInclude>
+    <ClInclude Include="WXETypes.h">
+      <Filter>Class</Filter>
+    </ClInclude>
     <ClInclude Include="WXECommon.h">
       <Filter>Class</Filter>
     </ClInclude>
-    <ClInclude Include="WXEHookOperateBase.h">
-      <Filter>Class\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="WXEFriendOperateV2_6_8_51.h">
-      <Filter>Class\V2.6.8.51</Filter>
-    </ClInclude>
-    <ClInclude Include="WXELoginOperateV2_6_8_51.h">
-      <Filter>Class\V2.6.8.51</Filter>
-    </ClInclude>
-    <ClInclude Include="WXEHookOperateV2_6_8_51.h">
-      <Filter>Class\V2.6.8.51</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -70,16 +67,10 @@
     <ClCompile Include="WXELoginOperateBase.cpp">
       <Filter>Class\Base</Filter>
     </ClCompile>
-    <ClCompile Include="WXEHookOperateBase.cpp">
-      <Filter>Class\Base</Filter>
-    </ClCompile>
     <ClCompile Include="WXEFriendOperateV2_6_8_51.cpp">
       <Filter>Class\V2.6.8.51</Filter>
     </ClCompile>
     <ClCompile Include="WXELoginOperateV2_6_8_51.cpp">
-      <Filter>Class\V2.6.8.51</Filter>
-    </ClCompile>
-    <ClCompile Include="WXEHookOperateV2_6_8_51.cpp">
       <Filter>Class\V2.6.8.51</Filter>
     </ClCompile>
   </ItemGroup>

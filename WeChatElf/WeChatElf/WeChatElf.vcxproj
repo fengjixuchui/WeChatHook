@@ -151,12 +151,11 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WXECommon.h" />
+    <ClInclude Include="WXETypes.h" />
     <ClInclude Include="WXEFriendOperateBase.h" />
-    <ClInclude Include="WXEFriendOperateV2_6_8_51.h" />
-    <ClInclude Include="WXEHookOperateBase.h" />
-    <ClInclude Include="WXEHookOperateV2_6_8_51.h" />
+    <ClInclude Include="WXEFriendOperateImpl.h" />
     <ClInclude Include="WXELoginOperateBase.h" />
-    <ClInclude Include="WXELoginOperateV2_6_8_51.h" />
+    <ClInclude Include="WXELoginOperateImpl.h" />
     <ClInclude Include="WXESubject.h" />
     <ClInclude Include="WXESubjectImpl.h" />
   </ItemGroup>
@@ -170,8 +169,6 @@
     </ClCompile>
     <ClCompile Include="WXEFriendOperateBase.cpp" />
     <ClCompile Include="WXEFriendOperateV2_6_8_51.cpp" />
-    <ClCompile Include="WXEHookOperateBase.cpp" />
-    <ClCompile Include="WXEHookOperateV2_6_8_51.cpp" />
     <ClCompile Include="WXELoginOperateBase.cpp" />
     <ClCompile Include="WXELoginOperateV2_6_8_51.cpp" />
     <ClCompile Include="WXESubject.cpp" />

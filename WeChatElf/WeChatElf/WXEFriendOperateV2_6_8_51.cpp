@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "WXEFriendOperateV2_6_8_51.h"
+#include "WXEFriendOperateImpl.h"
 
 
 WXEFriendOperateV2_6_8_51::WXEFriendOperateV2_6_8_51()

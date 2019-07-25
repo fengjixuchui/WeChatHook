@@ -1,19 +1,21 @@
 #pragma once
 
-#include "WXESubjectImpl.h"
+#include "WXETypes.h"
+
+class WXESubjectImpl;
 
 class WXESubject {
 public:
-	WXESubject(DWORD address);
+	WXESubject(WXEVersion version, DWORD address);
 	~WXESubject();
 
 public:
 	/*
 	*	登陆操作
 	*/
-	std::wstring& getLoginQRCode() const;
-	std::wstring& getLoginInfo() const;
-	std::wstring& getLogoutInfo() const;
+	void getLoginQRCode() const;
+	void getLoginInfo() const;
+	void getLogoutInfo() const;
 
 	/*
 	*	获取用户信息
@@ -46,7 +48,7 @@ public:
 	void inviteFriendToJoinRoom() const;  //直接拉进群
 	void inviteFriendToJoinRoomEx() const; //需要好友同意
 	void kickRoomMember() const;
-	void modifyRoomName()const;
+	void modifyRoomName() const;
 	void setRoomAnnouncement() const;
 	void modifyMyRoomNickName() const;
 	void saveRoomToAddressBook() const;
@@ -62,15 +64,11 @@ public:
 	void sendPictureMessage() const;
 	void sendFileMessage() const;
 	void sendVideoMessage() const;
-	void sendGifMessage()const;
-
-	/*
-	*	接收消息
-	*/
+	void sendGifMessage() const;
 	void openReceiveMessage() const;
 	void stopReceiveMessage() const;
 	void preventWithdrawalMessage() const;
-	
+
 	/*
 	*	文件操作
 	*/
@@ -93,14 +91,8 @@ public:
 
 private:
 	/*
-	*  微信模块基址
-	*/
-	DWORD winBaseAddress;
-
-private:
-	/*
 	*  类的真正实现对象
 	*/
-	std::unique_ptr<WXESubjectImpl> implementation;
+	std::unique_ptr<WXESubjectImpl> pImpl;
 };
 

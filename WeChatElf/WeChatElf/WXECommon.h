@@ -1,66 +1,62 @@
 #pragma once
 
-#include <vector>
-#include <list>
-#include <set>
-#include <map>
-#include <array>
+#include "WXETypes.h"
 
-#include <string>
-
-#include <memory>
-#include <mutex>
-#include <commctrl.h>
-
-enum WXEError {
-	WXEErrorSuccess = 0,
-	WXEErrorHookFailed = 1,
-};
-
-typedef struct _WXEGeneralTextStruct
-{
-	std::wstring text;
-	DWORD length;
-	DWORD maxLength;
-	CHAR fill[0x8];
-	_WXEGeneralTextStruct(const std::wstring& value) {
-		text = value;
-		length = value.length();
-		maxLength = length * 2;
-		memset(fill, 0, sizeof(fill));
-	}
-} WXEGeneralTextStruct;
-using WXEUserID = WXEGeneralTextStruct;
-using WXERoomID = WXEGeneralTextStruct;
-using WXEMessage = WXEGeneralTextStruct;
-using WXEOPString = WXEGeneralTextStruct;
-
-template<typename T>
-struct WXEStructArray {
-	DWORD start;
-	DWORD end;
-	DWORD endEx;
-	WXEStructArray(DWORD header) {
-		start = header;
-		end = header + sizeof(T);
-		endEx = end;
+template<size_t T>
+struct WXEHookItems {
+	DWORD hookAddress;
+	DWORD originCall;
+	DWORD nextOrderAddress;
+	DWORD jumpCall; //  Bare function
+	DWORD disposeCall; // User dispose call
+	WXEHookItems(DWORD address = 0x0, DWORD call = 0x0) {
+		hookAddress = address;
+		originCall = call;
+		nextOrderAddress = hookAddress + T;
+		jumpCall = 0x0;
+		disposeCall = 0x0;
 	}
 };
 
-typedef struct _WXEGeneralDataStruct {
-	CHAR *bytes;
-	DWORD size;
-	_WXEGeneralDataStruct(CHAR *header, DWORD length) {
-		bytes = header;
-		size = length;
+template<size_t T>
+class WXEHookOperator {
+public:
+	WXEError execute(LPCVOID hookAddress, std::array<BYTE, T>& code) const {
+		std::array<BYTE, T> tempCode;
+		HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS, NULL, GetCurrentProcessId());
+
+		if (ReadProcessMemory(hProc, hookAddress, tempCode.data(), T, NULL) == 0)
+			return WXEErrorHookFailed;
+		if (WriteProcessMemory(hProc, (LPVOID)hookAddress, code.data(), T, NULL) == 0)
+			return WXEErrorHookFailed;
+
+		memcpy(code.data(), tempCode.data(), T);
+		return WXEErrorSuccess;
 	}
-	_WXEGeneralDataStruct(const _WXEGeneralDataStruct& other) {
-		this->bytes = other.bytes;
-		this->size = other.size;
-	}
-} WXEGeneralDataStruct;
-using WXEData = WXEGeneralDataStruct;
-using WXEDataAutoPtr = std::unique_ptr<WXEData>;
+};
 
 template<typename T>
-using WXENetSceneCallback = std::function<void(WXEError error, T data)>;
+class  WXESecurityStore {
+public:
+	WXESecurityStore(bool set = false) :isSet(set) { }
+	WXESecurityStore(const WXESecurityStore& other):WXESecurityStore(other.isSet){ }
+	void setObject(const T& e) {
+		if (!isSet) {
+			lock.try_lock();
+			cache = e;
+			isSet = true;
+			lock.unlock();
+		}
+	}
+
+	const T& object() {
+		lock.try_lock();
+		isSet = false;
+		lock.unlock();
+		return std::move(cache);
+	}
+private:
+	T cache;
+	std::mutex lock;
+	bool isSet;
+};

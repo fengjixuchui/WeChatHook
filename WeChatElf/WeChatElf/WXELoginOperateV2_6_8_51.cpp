@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "WXELoginOperateV2_6_8_51.h"
+#include "WXELoginOperateImpl.h"
 
 
 WXELoginOperateV2_6_8_51::WXELoginOperateV2_6_8_51(DWORD address)
