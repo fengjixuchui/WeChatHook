@@ -72,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);./Class/Base;./Class/Header;./;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -147,19 +148,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Class\Base\WXEChatRoomOperateBase.h" />
+    <ClInclude Include="Class\Base\WXEFriendOperateBase.h" />
+    <ClInclude Include="Class\Base\WXELoginOperateBase.h" />
+    <ClInclude Include="Class\Header\WXEChatRoomOperateImpl.h" />
+    <ClInclude Include="Class\Header\WXEFriendOperateImpl.h" />
+    <ClInclude Include="Class\Header\WXELoginOperateImpl.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WXECommon.h" />
-    <ClInclude Include="WXETypes.h" />
-    <ClInclude Include="WXEFriendOperateBase.h" />
-    <ClInclude Include="WXEFriendOperateImpl.h" />
-    <ClInclude Include="WXELoginOperateBase.h" />
-    <ClInclude Include="WXELoginOperateImpl.h" />
     <ClInclude Include="WXESubject.h" />
     <ClInclude Include="WXESubjectImpl.h" />
+    <ClInclude Include="WXETypes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Class\Base\WXEChatRoomOperateBase.cpp" />
+    <ClCompile Include="Class\Base\WXEFriendOperateBase.cpp" />
+    <ClCompile Include="Class\Base\WXELoginOperateBase.cpp" />
+    <ClCompile Include="Class\V2.6.8.51\WXEChatRoomOperateV2_6_8_51.cpp" />
+    <ClCompile Include="Class\V2.6.8.51\WXEFriendOperateV2_6_8_51.cpp" />
+    <ClCompile Include="Class\V2.6.8.51\WXELoginOperateV2_6_8_51.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -167,10 +176,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="WXEFriendOperateBase.cpp" />
-    <ClCompile Include="WXEFriendOperateV2_6_8_51.cpp" />
-    <ClCompile Include="WXELoginOperateBase.cpp" />
-    <ClCompile Include="WXELoginOperateV2_6_8_51.cpp" />
     <ClCompile Include="WXESubject.cpp" />
     <ClCompile Include="WXESubjectImpl.cpp" />
   </ItemGroup>

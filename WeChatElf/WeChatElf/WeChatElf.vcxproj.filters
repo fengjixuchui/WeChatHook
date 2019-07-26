@@ -6,13 +6,16 @@
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Class">
-      <UniqueIdentifier>{a4a67206-1c89-4188-ae35-08f813ad5d03}</UniqueIdentifier>
+      <UniqueIdentifier>{c822cfd6-7c34-4a8b-8ab4-db3c753c1f62}</UniqueIdentifier>
     </Filter>
     <Filter Include="Class\Base">
-      <UniqueIdentifier>{babd256e-be3e-49be-b39d-0f1594c074a7}</UniqueIdentifier>
+      <UniqueIdentifier>{29792982-5829-424d-90c5-81ba5c0f12c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Class\Header">
+      <UniqueIdentifier>{2fe9a0d1-c020-4675-bbec-2dfefbb40426}</UniqueIdentifier>
     </Filter>
     <Filter Include="Class\V2.6.8.51">
-      <UniqueIdentifier>{af9a496b-5b7c-4956-a404-859a05440430}</UniqueIdentifier>
+      <UniqueIdentifier>{42fd7f68-995a-425d-9da9-3d7403bed298}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,30 +25,36 @@
     <ClInclude Include="targetver.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="WXEFriendOperateBase.h">
-      <Filter>Class\Base</Filter>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="WXECommon.h">
+      <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="WXESubject.h">
-      <Filter>Class</Filter>
+      <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="WXESubjectImpl.h">
-      <Filter>Class</Filter>
-    </ClInclude>
-    <ClInclude Include="WXELoginOperateBase.h">
-      <Filter>Class\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="WXELoginOperateImpl.h">
-      <Filter>Class\V2.6.8.51</Filter>
-    </ClInclude>
-    <ClInclude Include="WXEFriendOperateImpl.h">
-      <Filter>Class\V2.6.8.51</Filter>
+      <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="WXETypes.h">
-      <Filter>Class</Filter>
+      <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="WXECommon.h">
-      <Filter>Class</Filter>
+    <ClInclude Include="Class\Base\WXEFriendOperateBase.h">
+      <Filter>Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\WXELoginOperateBase.h">
+      <Filter>Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Header\WXEFriendOperateImpl.h">
+      <Filter>Class\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Header\WXELoginOperateImpl.h">
+      <Filter>Class\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Header\WXEChatRoomOperateImpl.h">
+      <Filter>Class\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\WXEChatRoomOperateBase.h">
+      <Filter>Class\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,23 +64,29 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="WXEFriendOperateBase.cpp">
-      <Filter>Class\Base</Filter>
-    </ClCompile>
     <ClCompile Include="WXESubject.cpp">
-      <Filter>Class</Filter>
+      <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="WXESubjectImpl.cpp">
-      <Filter>Class</Filter>
+      <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="WXELoginOperateBase.cpp">
+    <ClCompile Include="Class\Base\WXEFriendOperateBase.cpp">
       <Filter>Class\Base</Filter>
     </ClCompile>
-    <ClCompile Include="WXEFriendOperateV2_6_8_51.cpp">
+    <ClCompile Include="Class\Base\WXELoginOperateBase.cpp">
+      <Filter>Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\V2.6.8.51\WXEFriendOperateV2_6_8_51.cpp">
       <Filter>Class\V2.6.8.51</Filter>
     </ClCompile>
-    <ClCompile Include="WXELoginOperateV2_6_8_51.cpp">
+    <ClCompile Include="Class\V2.6.8.51\WXELoginOperateV2_6_8_51.cpp">
       <Filter>Class\V2.6.8.51</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\V2.6.8.51\WXEChatRoomOperateV2_6_8_51.cpp">
+      <Filter>Class\V2.6.8.51</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Base\WXEChatRoomOperateBase.cpp">
+      <Filter>Class\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

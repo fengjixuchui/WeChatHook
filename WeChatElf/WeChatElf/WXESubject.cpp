@@ -131,6 +131,10 @@ void WXESubject::removeRoomToAddressBook() const {
 	pImpl->removeRoomToAddressBook();
 }
 
+void WXESubject::addFriendsFromRoom() const {
+	pImpl->addFriendsFromRoom();
+}
+
 // Message Module
 
 void WXESubject::sendTextMessage() const {

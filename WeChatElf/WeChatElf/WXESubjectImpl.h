@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "WXECommon.h"
-#include "WXELoginOperateBase.h"
 
 class WXELoginOperateBase;
 
@@ -53,6 +52,7 @@ public:
 	void modifyMyRoomNickName() const;
 	void saveRoomToAddressBook() const;
 	void removeRoomToAddressBook() const;
+	void addFriendsFromRoom() const;
 
 	/*
 	 *    ∑¢ÀÕœ˚œ¢
@@ -96,5 +96,5 @@ public:
 private:
 	DWORD winBaseAddress;
 
-	std::unique_ptr<WXELoginOperateBase> loginModule;
+	std::shared_ptr<WXELoginOperateBase> loginModule;
 };

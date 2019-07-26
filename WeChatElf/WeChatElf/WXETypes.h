@@ -50,6 +50,7 @@ struct WXEStructArray {
 		endEx = end;
 	}
 };
+using WXEUserArray = WXEStructArray<WXEUserID>;
 
 typedef struct _WXEGeneralDataStruct {
 	CHAR *bytes;

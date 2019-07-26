@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WXETypes.h"
+#include "WXECommon.h"
 
 class WXESubjectImpl;
 
@@ -53,6 +53,7 @@ public:
 	void modifyMyRoomNickName() const;
 	void saveRoomToAddressBook() const;
 	void removeRoomToAddressBook() const;
+	void addFriendsFromRoom() const;
 
 	/*
 	*	·¢ËÍÏûÏ¢

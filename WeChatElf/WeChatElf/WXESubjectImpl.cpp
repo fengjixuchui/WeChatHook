@@ -5,7 +5,7 @@
 WXESubjectImpl::WXESubjectImpl(WXEVersion version, DWORD address)
 	: winBaseAddress(address) {
 	if (version == WXEVersion_2_6_8_51) {
-		//loginModule = std::make_unique<WXELoginOperateBase>(new WXELoginOperateV2_6_8_51(address));
+		loginModule = std::make_shared<WXELoginOperateV2_6_8_51>(address);
 	}
 }
 
@@ -125,6 +125,10 @@ void WXESubjectImpl::saveRoomToAddressBook() const {
 }
 
 void WXESubjectImpl::removeRoomToAddressBook() const {
+
+}
+
+void WXESubjectImpl::addFriendsFromRoom() const {
 
 }
 
