@@ -14,7 +14,7 @@ WXESubject::~WXESubject() {
 // Login Module
 
 void WXESubject::getLoginQRCode() const {
-	pImpl->getLoginInfo();
+	pImpl->getLoginQRCode();
 }
 
 void WXESubject::getLoginInfo() const {
@@ -57,8 +57,8 @@ void WXESubject::getInfoOfRoomMemberFromNetwork(std::vector<int>& members) const
 
 // Friend Module
 
-void WXESubject::addFriends(std::vector<int>& friends) const {
-	pImpl->addFriends(friends);
+void WXESubject::sendFriendVerification(const std::wstring& wxid, const std::wstring& verifyText) const {
+	pImpl->sendFriendVerification(wxid, verifyText);
 }
 
 void WXESubject::deleteFriends(std::vector<int>& friends) const {
@@ -77,8 +77,8 @@ void WXESubject::modifyFriendNotes(std::vector<int>& friends) const {
 	pImpl->modifyFriendNotes(friends);
 }
 
-void WXESubject::agreeFriendRequest(std::wstring& friends) const {
-	pImpl->agreeFriendRequest(friends);
+void WXESubject::agreeFriendRequest(const std::wstring& v1Str, const std::wstring& v2Str) const {
+	pImpl->agreeFriendRequest(v1Str, v2Str);
 }
 
 void WXESubject::receiveFriendTransfer() const {
@@ -169,12 +169,8 @@ void WXESubject::sendGifMessage() const {
 	pImpl->sendGifMessage();
 }
 
-void WXESubject::openReceiveMessage() const {
-	pImpl->openReceiveMessage();
-}
-
-void WXESubject::stopReceiveMessage() const {
-	pImpl->stopReceiveMessage();
+void WXESubject::switchReceiveMessage(bool isOpen) const {
+	pImpl->switchReceiveMessage(isOpen);
 }
 
 void WXESubject::preventWithdrawalMessage() const {

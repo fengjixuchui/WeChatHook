@@ -6,7 +6,7 @@ public:
 	WXEChatRoomOperateV2_6_8_51(DWORD address);
     
 private:
-    void createChatRoom(const std::vector<WXEUserID>&, WXENetSceneCallback<WXEData>) const;
+    void createChatRoom(const std::vector<WXEUserID>& users, const WXENetSceneCallback<WXEData>& callback = NULL) const;
     void deleteAndQuitChatRoom(const std::wstring& room) const;
     void inviteFriendToJoinRoom(const std::wstring& , const std::vector<WXEUserID>&) const;
     void inviteFriendToJoinRoomEx(const std::wstring& , const std::vector<WXEUserID>&) const;
@@ -16,6 +16,6 @@ private:
     void modifyMyRoomNickName() const;
     void saveRoomToAddressBook() const;
     void removeRoomToAddressBook() const;
-    void addFriendsFromRoom(const std::wstring& room, std::wstring& user) const;
+	void addFriendsFromRoom(const std::wstring& room, const std::wstring& user) const;
 };
 

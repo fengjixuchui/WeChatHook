@@ -41,20 +41,27 @@ public:
 	WXESecurityStore(bool set = false) :isSet(set) { }
 	WXESecurityStore(const WXESecurityStore& other):WXESecurityStore(other.isSet){ }
 	void setObject(const T& e) {
-		if (!isSet) {
-			lock.try_lock();
-			cache = e;
-			isSet = true;
-			lock.unlock();
-		}
+		lock.try_lock();
+		cache = e;
+		isSet = true;
+		lock.unlock();
 	}
-
 	const T& object() {
 		lock.try_lock();
 		isSet = false;
 		lock.unlock();
 		return std::move(cache);
 	}
+	const bool isValid() const {
+		return isSet;
+	}
+	void reset() {
+		lock.try_lock();
+		cache = NULL;
+		isSet = false;
+		lock.unlock();
+	}
+
 private:
 	T cache;
 	std::mutex lock;

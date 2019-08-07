@@ -8,8 +8,8 @@ WXEChatRoomOperateV2_6_8_51::WXEChatRoomOperateV2_6_8_51(DWORD address)
 	hookCreateRoomResultItems = WXEHookItems<5>(address + 0x1F110B, address + 0x480040);
 }
 
-void WXEChatRoomOperateV2_6_8_51::createChatRoom(const std::vector<WXEUserID>& users, WXENetSceneCallback<WXEData> data) const {
-    WXEUserArray userArray = WXEUserArray((DWORD)&users[0]);
+void WXEChatRoomOperateV2_6_8_51::createChatRoom(const std::vector<WXEUserID>& users, const WXENetSceneCallback<WXEData>& callback) const {
+    WXEUserArray userArray = WXEUserArray((DWORD)&users[0], users.size());
     DWORD ediVal = userArray.end;
     DWORD callAddress1 = winBaseAddress + 0x264D10;
     DWORD paramEcx = winBaseAddress + 0x126DDC0;
@@ -157,7 +157,7 @@ void WXEChatRoomOperateV2_6_8_51::setRoomAnnouncement(const std::wstring& room, 
         WXEGeneralTextStruct content;
         char fill[0x3C] = { 0 };
         _(const std::wstring& room, const std::wstring& text) :roomID(room), content(text){ }
-    } param = {std::wstring((WCHAR *)lpRoom), std::wstring((WCHAR *)lpContent)};
+    } param { std::wstring((WCHAR *)lpRoom), std::wstring((WCHAR *)lpContent) };
     
     struct {
         DWORD start;
@@ -190,7 +190,7 @@ void WXEChatRoomOperateV2_6_8_51::removeRoomToAddressBook() const {
     
 }
 
-void WXEChatRoomOperateV2_6_8_51::addFriendsFromRoom(const std::wstring& room, std::wstring& user) const {
+void WXEChatRoomOperateV2_6_8_51::addFriendsFromRoom(const std::wstring& room, const std::wstring& user) const {
     LPVOID lpRoom = HeapAlloc(GetProcessHeap(), 0, room.length() + 0x4);
     CopyMemory(lpRoom, room.c_str(), room.length() + 0x4);
     DWORD dwRoom = (DWORD)lpRoom;

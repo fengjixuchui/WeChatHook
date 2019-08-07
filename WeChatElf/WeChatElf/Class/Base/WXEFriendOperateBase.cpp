@@ -33,6 +33,7 @@ WXEError WXEFriendOperateSimple::hookReceiveTransfer(bool isOpen) const {
 		*(DWORD *)&backupReceiveTransferCode[1] = globleHookReceiveTransferItems.jumpCall - globleHookReceiveTransferItems.hookAddress - 5;
 	}
 
+	WXEHookOperator<5> hookOperator;
 	WXEError result = hookOperator.execute((LPCVOID)globleHookReceiveTransferItems.hookAddress, backupReceiveTransferCode);
 	if (result == WXEErrorSuccess)
 		openReceiveTransfer = isOpen;

@@ -31,12 +31,12 @@ public:
 	/*
 	*	好友操作
 	*/
-	void addFriends(std::vector<int>& friends) const;
+	void sendFriendVerification(const std::wstring& wxid, const std::wstring& verifyText) const;
 	void deleteFriends(std::vector<int>& friends) const;
 	void setStarMarkToFriends(std::vector<int>& friends) const;
 	void cancelStarMarkToFriends(std::vector<int>& friends) const;
 	void modifyFriendNotes(std::vector<int>& friends) const;
-	void agreeFriendRequest(std::wstring& friends) const;
+	void agreeFriendRequest(const std::wstring& v1Str, const std::wstring& v2Str) const;
 	void receiveFriendTransfer() const;
 	void agreeRoomInvitaionOfFriend() const;
 
@@ -66,8 +66,7 @@ public:
 	void sendFileMessage() const;
 	void sendVideoMessage() const;
 	void sendGifMessage() const;
-	void openReceiveMessage() const;
-	void stopReceiveMessage() const;
+	void switchReceiveMessage(bool isOpen) const;
 	void preventWithdrawalMessage() const;
 
 	/*
@@ -94,6 +93,6 @@ private:
 	/*
 	*  类的真正实现对象
 	*/
-	std::unique_ptr<WXESubjectImpl> pImpl;
+	std::shared_ptr<WXESubjectImpl> pImpl;
 };
 

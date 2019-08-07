@@ -3,6 +3,10 @@
 #include "WXECommon.h"
 
 class WXELoginOperateBase;
+class WXEChatRoomOperateBase;
+class WXEMessageOperateBase;
+class WXEFileOperateBase;
+class WXEFriendOperateBase;
 
 class WXESubjectImpl {
 public:
@@ -30,12 +34,12 @@ public:
 	/*
 	 *    ∫√”—≤Ÿ◊˜
 	 */
-	void addFriends(std::vector<int>& friends) const;
+	void sendFriendVerification(const std::wstring& wxid, const std::wstring& verifyText) const;
 	void deleteFriends(std::vector<int>& friends) const;
 	void setStarMarkToFriends(std::vector<int>& friends) const;
 	void cancelStarMarkToFriends(std::vector<int>& friends) const;
 	void modifyFriendNotes(std::vector<int>& friends) const;
-	void agreeFriendRequest(std::wstring& friends) const;
+	void agreeFriendRequest(const std::wstring& v1Str, const std::wstring& v2Str) const;
 	void receiveFriendTransfer() const;
 	void agreeRoomInvitaionOfFriend() const;
 
@@ -65,12 +69,7 @@ public:
 	void sendFileMessage() const;
 	void sendVideoMessage() const;
 	void sendGifMessage() const;
-
-	/*
-	 *    Ω” ’œ˚œ¢
-	 */
-	void openReceiveMessage() const;
-	void stopReceiveMessage() const;
+	void switchReceiveMessage(bool isOpen) const;
 	void preventWithdrawalMessage() const;
 
 	/*
@@ -97,4 +96,8 @@ private:
 	DWORD winBaseAddress;
 
 	std::shared_ptr<WXELoginOperateBase> loginModule;
+	std::shared_ptr<WXEChatRoomOperateBase> groupModule;
+	std::shared_ptr<WXEMessageOperateBase> messageModule;
+	std::shared_ptr<WXEFileOperateBase> fileModule;
+	std::shared_ptr<WXEFriendOperateBase> friendModule;
 };

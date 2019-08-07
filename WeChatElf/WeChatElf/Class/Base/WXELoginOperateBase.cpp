@@ -1,20 +1,23 @@
 #include "stdafx.h"
 #include "WXELoginOperateBase.h"
 
-static bool openGetQRCode = false;
+static bool openGetQRCode = false; 
 static std::array<BYTE, 5> backupGetQRCode;
 static WXEHookItems<5> globleHookGetQRCodeItems;
-static WXESecurityStore<WXEUserID> store = { WXESecurityStore<WXEUserID>(false) };
 void getQRCodeCallback();
-void sendQRCodePNG(DWORD pngHeaderPtr);
+void __stdcall disposeQRCodePNG(DWORD pngHeaderPtr);
+
+std::mutex mutex;// = std::mutex();
+std::condition_variable condVar;// = std::condition_variable();
+WXESecurityStore<WXENetSceneCallback<WXEData>> QRCodeStore;
+
 
 WXELoginOperateBase::~WXELoginOperateBase() {
 
 }
 
 WXELoginOperateSimple::WXELoginOperateSimple(DWORD address)
-	:winBaseAddress(address),
-	hookOperator(WXEHookOperator<5>{ }) {
+:winBaseAddress(address) {
 
 }
 
@@ -22,35 +25,21 @@ WXELoginOperateSimple::~WXELoginOperateSimple() {
 
 }
 
-WXEError WXELoginOperateSimple::getLoginQRCode(WXENetSceneCallback<WXEData> callback) const {
-	WXEError result = WXEErrorSuccess;
-	if (!openGetQRCode) {
-		if ((result = hookGetQRCode(true)) != WXEErrorSuccess) {
-			return result;
-		}
-	}
-	//store.setObject(callback);
-	// send get qrcode ....
-	return result;
-}
-
-WXEError WXELoginOperateSimple::hookGetQRCode(bool open) const {
-	if (globleHookGetQRCodeItems.hookAddress == 0) {
+WXEError WXELoginOperateSimple::hookGetQRCode(bool open) {
+	if (open) {
+		if (openGetQRCode) return WXEErrorSuccess;
 		globleHookGetQRCodeItems = hookGetQRCodeItems;
 		globleHookGetQRCodeItems.jumpCall = (DWORD)getQRCodeCallback;
-		globleHookGetQRCodeItems.disposeCall = (DWORD)sendQRCodePNG;
-	}
-
-	if (open) {
+		globleHookGetQRCodeItems.disposeCall = (DWORD)disposeQRCodePNG;
 		backupGetQRCode[0] = 0xE9;
 		*(DWORD *)&backupGetQRCode[1] = globleHookGetQRCodeItems.jumpCall - hookGetQRCodeItems.hookAddress - 5;
 	}
 
+	WXEHookOperator<5> hookOperator;
 	WXEError result = hookOperator.execute((LPCVOID)globleHookGetQRCodeItems.hookAddress, backupGetQRCode);
 	if (result == WXEErrorSuccess)
 		openGetQRCode = open;
-
-	return WXEErrorSuccess;
+	return result;
 }
 
 void __declspec(naked)getQRCodeCallback() {
@@ -58,7 +47,7 @@ void __declspec(naked)getQRCodeCallback() {
 		pushad
 		pushfd
 		push ecx
-		call sendQRCodePNG
+		call globleHookGetQRCodeItems.disposeCall
 		popfd
 		popad
 		call globleHookGetQRCodeItems.originCall
@@ -66,14 +55,14 @@ void __declspec(naked)getQRCodeCallback() {
 	}
 }
 
-void sendQRCodePNG(DWORD pngHeaderPtr) {
-	/*
-	 WXEData data = WXEData(*(CHAR **)pngHeaderPtr, *(DWORD *)(pngHeaderPtr + 0x4));
-	 WXENetSceneCallback<WXEData> callback = store.object();
-	 if (data.size > 0) {
-	 callback(WXEErrorSuccess, data);
-	 } else {
-	 callback(WXEErrorNetSceneRequestFailed, data);
-	 }
-	 */
+void __stdcall disposeQRCodePNG(DWORD pngHeaderPtr) {
+	std::unique_lock <std::mutex> lock(mutex);
+	WXEData data = WXEData(*(CHAR **)pngHeaderPtr, *(DWORD *)(pngHeaderPtr + 0x4));
+	if (QRCodeStore.isValid()) {
+		WXENetSceneCallback<WXEData> callback = QRCodeStore.object();
+		callback(WXEErrorSuccess, data);
+	}
+	condVar.notify_one();
 }
+
+

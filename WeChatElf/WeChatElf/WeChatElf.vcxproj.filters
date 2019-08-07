@@ -56,6 +56,18 @@
     <ClInclude Include="Class\Base\WXEChatRoomOperateBase.h">
       <Filter>Class\Base</Filter>
     </ClInclude>
+    <ClInclude Include="Class\Base\WXEFileOperateBase.h">
+      <Filter>Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\WXEMessageOperateBase.h">
+      <Filter>Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Header\WXEFileOperateImpl.h">
+      <Filter>Class\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Header\WXEMessageOperateImpl.h">
+      <Filter>Class\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +99,18 @@
     </ClCompile>
     <ClCompile Include="Class\Base\WXEChatRoomOperateBase.cpp">
       <Filter>Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Base\WXEFileOperateBase.cpp">
+      <Filter>Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Base\WXEMessageOperateBase.cpp">
+      <Filter>Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\V2.6.8.51\WXEFileOperateV2_6_8_51.cpp">
+      <Filter>Class\V2.6.8.51</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\V2.6.8.51\WXEMessageOperateV2_6_8_51.cpp">
+      <Filter>Class\V2.6.8.51</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
